@@ -30,22 +30,20 @@ export default function Home() {
   const voluntary = parseNumber(voluntaryLeavers);
   const involuntary = parseNumber(involuntaryLeavers);
 
-  const metrics: Metric[] = useMemo(() => {
-    const calcLevel = (rate?: number): Level => {
-      if (rate === undefined || isNaN(rate)) return "na";
-      if (rate < 10) return "low";
-      if (rate < 20) return "medium";
-      return "high";
-    };
+  const calcLevel = (rate?: number): Level => {
+    if (rate === undefined || isNaN(rate)) return "na";
+    if (rate < 10) return "low";
+    if (rate < 20) return "medium";
+    return "high";
+  };
 
+  const metrics: Metric[] = useMemo(() => {
     const overall =
       avg > 0 && total >= 0 ? (total / avg) * 100 : undefined;
     const voluntaryRate =
       avg > 0 && voluntary >= 0 ? (voluntary / avg) * 100 : undefined;
     const involuntaryRate =
-      avg > 0 && involuntary >= 0
-        ? (involuntary / avg) * 100
-        : undefined;
+      avg > 0 && involuntary >= 0 ? (involuntary / avg) * 100 : undefined;
 
     return [
       {
@@ -120,14 +118,29 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center px-4 py-10">
-      <div className="w-full max-w-4xl">
+      <div className="w-full max-w-5xl">
+        {/* YUXARIDAKI BIRBANK HEADER */}
         <div className="mb-4 flex items-center justify-between">
-          <h1 className="text-xl font-semibold text-slate-700">
-            HR Turnover Paneli
-          </h1>
-          <span className="text-xs text-slate-500">
-            {periodLabel} hesablamalar
-          </span>
+          <div className="flex items-center gap-3">
+            <div className="h-9 w-9 rounded-2xl bg-rose-600 flex items-center justify-center text-white font-bold text-sm shadow-md">
+              B
+            </div>
+            <div className="leading-tight">
+              <div className="flex items-center gap-1">
+                <span className="text-sm font-semibold text-slate-900">
+                  birbank
+                </span>
+                <span className="text-[10px] uppercase tracking-wide text-rose-600">
+                  HR Analytics
+                </span>
+              </div>
+              <p className="text-[10px] text-slate-500">
+                Turnover &amp; employee insights
+              </p>
+            </div>
+          </div>
+
+          <span className="text-xs text-slate-500">{periodLabel} hesablamalar</span>
         </div>
 
         <main className="bg-white shadow-xl shadow-slate-200 rounded-2xl p-6 md:p-8 border border-slate-100">
@@ -136,9 +149,9 @@ export default function Home() {
               HR Turnover Rate Hesablayıcı
             </h2>
             <p className="mt-1 text-sm text-slate-600">
-              Dövr üzrə işçi dövriyyəsini (turnover) hesablamaq üçün
-              interaktiv HR aləti. Aşağıdakı məlumatları daxil et, nəticə
-              avtomatik formalaşsın.
+              Dövr üzrə işçi dövriyyəsini (turnover) hesablamaq üçün interaktiv
+              HR aləti. Aşağıdakı məlumatları daxil et, nəticə avtomatik
+              formalaşsın.
             </p>
           </header>
 
@@ -283,6 +296,13 @@ export default function Home() {
               </li>
             </ul>
           </section>
+
+          {/* FOOTER – by Elmi Qurbanli */}
+          <footer className="mt-6 border-t border-slate-100 pt-4">
+            <p className="text-[11px] text-slate-400 text-center">
+              by <span className="font-medium text-slate-500">Elmi Qurbanli</span>
+            </p>
+          </footer>
         </main>
       </div>
     </div>
